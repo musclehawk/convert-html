@@ -21,12 +21,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # Copy the application files to the container
-COPY . .
+COPY . /var/www/html
 
 # Install PHP dependencies
-RUN composer update
+RUN composer install
 
-# Command to run the PHP built-in server on port 8000
+# # Command to run the PHP built-in server on port 8000
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "/var/www/html"]
 
 RUN usermod -u 1000 www-data

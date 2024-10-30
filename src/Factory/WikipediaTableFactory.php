@@ -1,28 +1,25 @@
 <?php
 namespace App\Factory;
 
-use App\Entity\Table;
 use Symfony\Component\DomCrawler\Crawler;
 
 class WikipediaTableFactory
 {
-    public function createFromPageContent(string $htmlContent): ?Table
+    // Adjust the filter based on your table class
+    public const HTML_FILTER = 'table.wikitable';
+
+    public function createFromPageContent(string $htmlContent, string $sourcePath): bool
     {
         $crawler = new Crawler($htmlContent);
-        $tableCrawler = $crawler->filter('table.wikitable'); // Adjust the filter based on your table class
+        // Extract the first table
+        $tableHtml = $crawler->filter(self::HTML_FILTER)->first()->outerHtml();
 
-        if ($tableCrawler->count() === 0) {
-            return null; // No table found
+        if (!empty($tableHtml)) {
+            // Save the table HTML into a file
+            file_put_contents($sourcePath, $tableHtml);
+            return true;
         }
 
-        $rows = [];
-        $tableCrawler->filter('tr')->each(function (Crawler $rowCrawler) use (&$rows) {
-            $cells = $rowCrawler->filter('td')->each(function (Crawler $cellCrawler) {
-                return trim($cellCrawler->text());
-            });
-            $rows[] = $cells;
-        });
-
-        return new Table($rows);
+        return false;
     }
 }

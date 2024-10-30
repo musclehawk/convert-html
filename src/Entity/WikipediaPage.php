@@ -3,6 +3,7 @@ namespace App\Entity;
 
 class WikipediaPage
 {
+    // The HTML content of the Wikipedia page
     private string $htmlContent;
     
     public function __construct(string $htmlContent)
