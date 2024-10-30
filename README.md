@@ -10,14 +10,10 @@ Convert Html content
 - Factories: WikipediaTableFactory for handling the table extraction from the page.
 - Application Layer: Coordinate the interaction between different domain components.
 
-# docker-php-sample
-
-# Run docker php image
-docker compose up -d
-
 # Run Application
-composer install
-php src/index.php
+- composer install
+- npm install -g puppeteer
+- php src/index.php
 
 # Overview of the Problem and Design
 We are tasked with:
