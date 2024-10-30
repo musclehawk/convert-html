@@ -1,5 +1,7 @@
-# convert-html
-Convert Html content
+# Overall
+- This approach breaks down the problem according to DDD principles, focusing on isolating the logic within entities, value objects, repositories, and services.
+- TDD and BDD are reflected by writing tests for each class and the overall behavior of the application.
+- The code is modular, maintainable, and adheres to good software engineering practices.
 
 # Domain-Driven Design (DDD) / Structure
 - Domain: The core business logic revolves around extracting structured data (tables) from a Wikipedia page and processing it.
@@ -32,5 +34,5 @@ We are tasked with:
 - Factories: WikipediaTableFactory for handling the table extraction from the page.
 - Application Layer: Coordinate the interaction between different domain components.
 
-# Run Testing
+# TDD / Run Testing
 vendor/bin/phpunit tests/UrlTest.php
